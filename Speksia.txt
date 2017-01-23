@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Jan 21 13:46:20 2017
+
+@author: teemuko
+"""
+
+Uloin cluster: interfacen 1
+Seuraava: aliverkko 2
+Sitten ryhma(t) 3...
+Sisin: host
+
+Host voi kuulua ryhmaan, joka kuuluu aliverkkoon, 
+joka tavoitetaan interfacen kautta.
+
+Exception 1: jos ryhman jasenet ovatkin eri aliverkoissa... Pitaa molemmat 
+ryhmat piirtaa erikseen.
+
+Exception 2: Host voi kuulua kahteen ryhmaan. Talloin pitaa piirtaa molemmat.
+Enta jos hostiin on sitten yksittaisia ruleja? Piirretaanko yksittaiset 
+saannot silloinkin molempiin?
+
+Jospa aliverkko olisikin nakymaton voima, jolla hostit saataisiin lahekkain,
+mutta varsinainen verkko nakyisi vain IP-osoitteesta? Ehka ei.
+
+Logiikka:
+Jokainen source ja destinaatiorule pitaa tarkistaa onko yksittainen IP. 
+Jos on, niin sille pitaa loytaa pienin nimittaja ryhmista.
+
+Jokainen IP pitaa siis kayda lapi ja maarittaa minka tason ryhmaan se kuuluu
+ja sitten linkata ko. IP ryhmaan.
+Exeption: host kuuluu kahteen erilliseen ryhmaan. Tehdaanko copy-host 
+toiseen ryhmaan? Nimetaanko copy host ryhman mukaan?
+
+Jokaisen source ja destinaatioryhma eli enemman kuin yksi yksittainen host,
+pitaa muodostaa oma clusterinsa. Nimi voisi tulla yksittaisten hostien nimista
+aakkosjarjestyksessa.
+
+Ryhmilla voi olla aliryhmia. Pitaa loytaa pienin yhteinen nimittaja.
+Host kuuluu siihen pienimpaan ja pienempi ryhma sitten isompaan.
+
+Exception 3: Jos ryhmaan kuuluu yksittaisia hosteja seka verkko? 
+Verkkorule pitaa piirtaa erikseen? Ja vain yksittaisen hostit ryhmaan?
+
+Kaikki aliverkot voisivat muodostaa clusterin. Jos niihin ei tule hosteja,
+niin sit ei tuu.
